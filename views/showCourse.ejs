@@ -1,0 +1,13 @@
+<h1>Lista av alla kurser</h1>
+
+
+<%  courses.forEach( course => { %>
+    <div>
+        <%= course.name %>
+    </div>
+    <div>
+        <%= course.price %>
+    </div>
+    <a href="/addToCart/<%=course.id%>">Add to Cart</a>
+    <div>=================</div>
+ <%  }) %>
