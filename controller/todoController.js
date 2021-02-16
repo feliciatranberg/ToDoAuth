@@ -56,7 +56,7 @@ const addToShoppingCart = async(req, res) => {
   const userWithTodoData = await User.findOne({_id:req.user.user._id}).populate("shoppingCart");
 
   console.log(userWithTodoData.shoppingCart)
-  res.render("shoppingCart.ejs", {cartItem:userWithTodoData.shoppingCart, err:" " })
+  res.render("todo.ejs", {cartItem:userWithTodoData.shoppingCart, err:" " })
 }
 
 module.exports= {

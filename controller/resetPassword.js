@@ -5,10 +5,12 @@ const bcrypt = require("bcrypt")
 
 //tunnel till mailserver
 const transport = nodemailer.createTransport({
-    service: "gmail",
+    host: "send.one.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
     auth: {
-        user: "feddynamiskweb@gmail.com",
-        pass: "FedDynamiskWeb.2021"
+        user: process.env.NODEMAILER_USER,
+        pass: process.env.NODEMAILER_PASSWORD
     }
 })
 
@@ -32,7 +34,7 @@ const resetSubmit = async (req, res)=>{
     await user.save()
     
  await  transport.sendMail({
-       from: "feddynamiskweb@gmail.com",
+       from: "hey@feliciatranberg.se",
        to: user.email,
        subject: "reset password requested",
        html: `<h2>Klicka<a href="http://localhost:7700/reset/${user.token}" >Här</a> för att kunna återställa lösenord </h2>`
