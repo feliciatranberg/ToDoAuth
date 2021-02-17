@@ -37,7 +37,7 @@ const resetSubmit = async (req, res)=>{
        from: "hey@feliciatranberg.se",
        to: user.email,
        subject: "reset password requested",
-       html: `<h2>Klicka<a href="http://localhost:7700/reset/${user.token}" >Här</a> för att kunna återställa lösenord </h2>`
+       html: `<h2>Klicka<a href="http://localhost:7000/reset/${user.token}" >Här</a> för att kunna återställa lösenord </h2>`
    })
  
    res.render("checkMail.ejs")

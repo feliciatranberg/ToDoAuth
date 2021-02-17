@@ -51,7 +51,7 @@ const addToShoppingCart = async(req, res) => {
   // console.log(user)
     // hur ska vi spara detta 
    user.addToCart(todoId);
-   //console.log(user);
+   console.log(user);
 
   const userWithTodoData = await User.findOne({_id:req.user.user._id}).populate("shoppingCart");
 
