@@ -5,6 +5,7 @@
 <script src="https://kit.fontawesome.com/8a91947445.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
 <div class="todo-wrapper">
 <h3>ATT GÖRA:</h3>
 
@@ -13,8 +14,9 @@
 <button type="submit"><span class="fas fa-plus"></span></button>
 </form>
 
-
     <% todoTasks.forEach(details => { %>
+
+
     <li class="todo-list-item">
     <div class="todo-list-item-name"><%= details.content %></div>
     <a href="/edit/<%= details._id %>" class="edit-button">
@@ -25,6 +27,8 @@
     </a>
     </li>
     <% }) %>
+
+
 </div>
 </div>
 </body>

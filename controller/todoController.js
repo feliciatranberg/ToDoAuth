@@ -1,18 +1,29 @@
+const { findOne } = require("../model/todo");
 const Todo = require("../model/todo");
 const User = require("../model/user");
 
- const todoMain = (req, res)=>{
-        Todo.find({}, (err, tasks) => {
-            res.render("todo.ejs", { todoTasks: tasks });
-            });
+//  const todoMain = (req, res)=>{
+//         Todo.find({}, (err, tasks) => {
+//             res.render("todo.ejs", { todoTasks: tasks });
+//             });
+//         };
+
+    const todoMain = async (req, res)=> {
+
+    const userTodoList = await User.findOne({_id:req.user.user._id}).populate("todoList");
+            
+    console.log(userTodoList)
+
+    res.render("todo.ejs", { todoTasks: userTodoList.todoList});
         };
 
-       const addTodo = (req, res) => {
+       const addTodo = async (req, res) => {
             const todoTask = new Todo({
             content: req.body.content
             });
+            console.log(todoTask)
             try {
-            todoTask.save();
+            await todoTask.save();
             res.redirect("/todo");
             } catch (err) {
             res.redirect("/todo");
@@ -41,23 +52,27 @@ const User = require("../model/user");
                     res.redirect("/todo");
                     });
                     };
-  
-const addToShoppingCart = async(req, res) => {
-    
-    //req.params.id
-    const todoId = req.params.id
-    // vi ska spara course Id in i user collection
-    const user = await User.findOne({_id:req.user.user._id})
-  // console.log(user)
-    // hur ska vi spara detta 
-   user.addToCart(todoId);
-   console.log(user);
 
-  const userWithTodoData = await User.findOne({_id:req.user.user._id}).populate("shoppingCart");
+                    const saveTodo = async (req, res) => {
 
-  console.log(userWithTodoData.shoppingCart)
-  res.render("todo.ejs", {cartItem:userWithTodoData.shoppingCart, err:" " })
-}
+                        const todoTask = await new Todo({
+                            content: req.body.content
+                            }).save()
+                        
+                        const todoTasksId = todoTask._id
+
+
+                        const user = await User.findOne({_id:req.user.user._id})
+
+                        user.addToList(todoTasksId);
+
+                        const userTodoList = await User.findOne({_id:req.user.user._id}).populate("todoList");
+
+                        console.log(userTodoList.todoList)
+
+                        res.render("todo.ejs", {todoTasks:userTodoList.todoList})
+                    }
+                    
 
 module.exports= {
     todoMain, 
@@ -65,5 +80,5 @@ module.exports= {
     editTodo,
     updateTodo,
     removeTodo,
-    addToShoppingCart
+    saveTodo
 }
