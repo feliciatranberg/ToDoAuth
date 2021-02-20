@@ -18,11 +18,15 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.addToList = async function(todoTasksId) {
-  
       this.todoList.push(todoTasksId)
-
      await this.save();
    }
+
+//    userSchema.methods.removeFromList = async function(removeTodoTasksId) {
+//     this.todoList.remove(removeTodoTasksId)
+//    await this.save();
+//  }
+
 
 const User = mongoose.model("user", userSchema);
 
