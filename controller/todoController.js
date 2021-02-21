@@ -30,7 +30,7 @@ const removeTodo = async (req, res) => {
   await Todo.findByIdAndRemove(id)
 
   const user =  await User.findOne({_id: req.user.user._id})
-  user.todoList = [];
+  user.todoList.splice(id, 1);
   user.save();
 
   res.redirect("/todo");
