@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
+const sassMiddleware = require('node-sass-middleware');
 
 const userRouter = require('./router/userRoute');
 const homeRouter = require('./router/homeRoute');
@@ -10,6 +11,18 @@ const todoRouter = require('./router/todoRoute');
 require('dotenv').config();
 
 const app = express();
+
+const path = require('path');
+app.use(sassMiddleware({
+    src: __dirname + '/sass/', 
+    dest: __dirname + '/public/stylesheets/', 
+    outputStyle: 'compressed' 
+  }),
+)
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use("/static", express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
 // app middlewares
 app.set('view engine', 'ejs');
@@ -38,7 +51,7 @@ console.log(err)
 return 
 }
 
-app.listen(7000, ()=>{
+app.listen(7007, ()=>{
     console.log('ALLT E GÖTT')
 })
 })
