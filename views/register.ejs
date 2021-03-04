@@ -6,7 +6,13 @@
 </head>
 <body>
 
-<form action="/register" method="post">
+  <ul>
+    <li><a href="/login"> Login</a></li>
+    <li><a href="/register"> Register</a></li>
+    <li><a href="/reset">Forgot password?</a></li>
+</ul>
+
+<form class="register-form" action="/register" method="post">
 
     <% if(err) { %>
 
@@ -20,8 +26,7 @@
   
   <button type="submit">Register</button>
 
-  <span>Already have an account? </span>
-  <a href="/login"> Login</a>
+
 
 </form>
 
