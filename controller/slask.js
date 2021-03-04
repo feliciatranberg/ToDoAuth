@@ -31,3 +31,25 @@
                 res.redirect("/todo");
                 ;}
                 );}
+
+                
+
+                let unique = [...new Set(names)];
+console.log(unique); 
+
+const names = ['John', 'Paul', 'George', 'Ringo', 'John'];
+
+let x = (names) => names.filter((v,i) => names.indexOf(v) === i)
+x(names); 
+
+const names = ['John', 'Paul', 'George', 'Ringo', 'John'];
+
+function removeDups(names) {
+  let unique = {};
+  names.forEach(function(i) {
+    if(!unique[i]) {
+      unique[i] = true;
+    }
+  });
+  return Object.keys(unique);
+}

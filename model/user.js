@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-//name, email, password ,
-// role: Boolean, true -> lärare
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
@@ -18,14 +16,14 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.addToList = async function(todoTasksId) {
-      this.todoList.push(todoTasksId)
-     await this.save();
-   }
+  this.todoList.push(todoTasksId)
+  await this.save();
+}
 
-//    userSchema.methods.removeFromList = async function(removeTodoTasksId) {
-//     this.todoList.remove(removeTodoTasksId)
-//    await this.save();
-//  }
+// userSchema.methods.avoidDuplicates = async function(todoTasksId) {
+//   this.todoList.filter((v,i) => todoTasksId.indexOf(v) === i);
+
+
 
 
 const User = mongoose.model("user", userSchema);

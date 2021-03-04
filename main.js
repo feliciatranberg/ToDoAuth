@@ -51,7 +51,7 @@ console.log(err)
 return 
 }
 
-app.listen(7007, ()=>{
+app.listen(8000, ()=>{
     console.log('ALLT E GÖTT')
 })
 })

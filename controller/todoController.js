@@ -1,4 +1,3 @@
-const { findOne } = require("../model/todo");
 const Todo = require("../model/todo");
 const User = require("../model/user");
 
@@ -36,18 +35,21 @@ const removeTodo = async (req, res) => {
   res.redirect("/todo");
 };
 
+
 const saveTodo = async (req, res) => {
   const todoTask = await new Todo({
-    content: req.body.content,
-  }).save();
-  const todoTasksId = todoTask._id;
+    content: req.body.content
+     }).save();
+
   const user = await User.findOne({ _id: req.user.user._id });
-  user.addToList(todoTasksId);
+  await user.addToList(todoTask._id);
   const userTodoList = await User.findOne({ _id: req.user.user._id }).populate(
     "todoList"
   );
+  // console.log("usertodolist:", userTodoList)
   res.render("todo.ejs", { todoTasks: userTodoList.todoList });
 };
+
 
 module.exports = {
   todoMain,
