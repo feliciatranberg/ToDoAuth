@@ -17,8 +17,6 @@ const loginSubmit = async (req, res) => {
 
   const validUser = await bcrypt.compare(password, user.password);
 
-  console.log(validUser);
-
   if (!validUser) return res.redirect("/login");
 
   const jwtToken = await jwt.sign({ user: user }, process.env.SECRET_KEY);

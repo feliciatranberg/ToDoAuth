@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const sassMiddleware = require('node-sass-middleware');
 
 const userRouter = require('./router/userRoute');
@@ -24,7 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use("/static", express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-// app middlewares
 app.set('view engine', 'ejs');
 
 // parsa/konventera json data till js och tvärtom 
@@ -34,7 +33,6 @@ app.use(express.urlencoded({extended: false}));
 //läser cookies
 app.use(cookieParser());
 
-// router middlewares
 app.use(userRouter);
 app.use(homeRouter);
 app.use(todoRouter);

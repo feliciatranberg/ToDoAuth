@@ -3,11 +3,10 @@ const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt")
 
-//tunnel till mailserver
 const transport = nodemailer.createTransport({
     host: "send.one.com",
     port: 587,
-    secure: false, // true for 465, false for other ports
+    secure: false, 
     auth: {
         user: process.env.NODEMAILER_USER,
         pass: process.env.NODEMAILER_PASSWORD
@@ -69,7 +68,6 @@ const resetFormSubmit = async (req, res)=>{
     const salt = await bcrypt.genSalt(12);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // hittar mailen till användaren som ska ha nytt lösen (inlagt i resetParams)
     const user = await User.findOne({email:email});
 
      user.password = hashedPassword;

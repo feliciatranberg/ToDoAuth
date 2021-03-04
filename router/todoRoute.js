@@ -9,9 +9,5 @@ router.post('/todo', verifyUser, saveTodo)
 router.get("/edit/:id", verifyUser, editTodo)
 router.post("/edit/:id", verifyUser, updateTodo)
 router.get("/remove/:id", verifyUser, removeTodo)
-// router.post("/remove/:id", verifyUser, removeTodo)
-
-// router.get("/todo:/id", verifyUser, saveTodo)
-
 
 module.exports = router;

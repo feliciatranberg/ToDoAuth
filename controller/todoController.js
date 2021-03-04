@@ -35,7 +35,6 @@ const removeTodo = async (req, res) => {
   res.redirect("/todo");
 };
 
-
 const saveTodo = async (req, res) => {
   const todoTask = await new Todo({
     content: req.body.content
@@ -46,7 +45,7 @@ const saveTodo = async (req, res) => {
   const userTodoList = await User.findOne({ _id: req.user.user._id }).populate(
     "todoList"
   );
-  // console.log("usertodolist:", userTodoList)
+
   res.render("todo.ejs", { todoTasks: userTodoList.todoList });
 };
 
