@@ -19,7 +19,6 @@ userSchema.methods.addToList = async function(todoTasksId) {
   await this.save();
 }
 
-
 const User = mongoose.model("user", userSchema);
 
 module.exports = User;

@@ -14,18 +14,14 @@ const transport = nodemailer.createTransport({
 })
 
 const resetRender = (req, res)=>{
-
     res.render("reset.ejs", {err:""})
 }
 
 const resetSubmit = async (req, res)=>{
-
     const email = req.body.email
-
   const user =   await User.findOne({email:email});
 
   if(!user) return res.redirect("/register")
-
     const token = await crypto.randomBytes(32).toString("hex");
 
     user.token = token;
@@ -36,26 +32,21 @@ const resetSubmit = async (req, res)=>{
        from: "hey@feliciatranberg.se",
        to: user.email,
        subject: "reset password requested",
-       html: `<h2>Klicka<a href="http://localhost:8000/reset/${user.token}" >Här</a> för att kunna återställa lösenord </h2>`
+       html: `<h2>Klicka <a href="http://localhost:8000/reset/${user.token}" >Här</a> för att kunna återställa lösenord </h2>`
    })
- 
    res.render("checkMail.ejs")
 }
 
 const resetParams = async(req, res)=>{
-
   const token = req.params.token;
 
     try {
    const user =  await User.findOne({token:token,  tokenExpiration: { $gt: Date.now() } });
 
    if(!user) return res.redirect("/register");
-
    res.render("resetPasswordForm.ejs" , {err: "", email: user.email}) 
-
     }
     catch (err){
-
         res.render("reset.ejs", {err:" Försök igen"})
     }
 }
@@ -67,7 +58,6 @@ const resetFormSubmit = async (req, res)=>{
 
     const salt = await bcrypt.genSalt(12);
     const hashedPassword = await bcrypt.hash(password, salt);
-
     const user = await User.findOne({email:email});
 
      user.password = hashedPassword;

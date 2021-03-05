@@ -45,7 +45,6 @@ const saveTodo = async (req, res) => {
   const userTodoList = await User.findOne({ _id: req.user.user._id }).populate(
     "todoList"
   );
-
   res.render("todo.ejs", { todoTasks: userTodoList.todoList });
 };
 

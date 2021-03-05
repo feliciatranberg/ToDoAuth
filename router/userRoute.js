@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 const {registerRender, registerSubmit } =require("../controller/registerController")
 const {loginRender, loginSubmit} = require("../controller/loginController");
 const {resetRender, resetSubmit, resetParams, resetFormSubmit} = require("../controller/resetPassword");

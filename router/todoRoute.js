@@ -1,7 +1,6 @@
-const {todoMain, editTodo, updateTodo, removeTodo, saveTodo} = require("../controller/todoController");
 const express = require("express");
 const verifyUser = require("../middleware/verifyUser")
-
+const {todoMain, editTodo, updateTodo, removeTodo, saveTodo} = require("../controller/todoController");
 const router = express.Router();
 
 router.get("/todo", verifyUser, todoMain)
