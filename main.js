@@ -12,7 +12,7 @@ require('dotenv').config();
 const app = express();
 
 const path = require('path');
-app.use(sassMiddleware({
+app.use(sassMiddleware({ 
     src: __dirname + '/sass/', 
     dest: __dirname + '/public/stylesheets/', 
     outputStyle: 'compressed' 
@@ -46,7 +46,7 @@ console.log(err)
 return 
 }
 
-app.listen(8000, ()=>{
+app.listen(process.env.PORT || 8000, ()=>{
     console.log('ALLT E GÖTT')
 })
 })
