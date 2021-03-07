@@ -4,7 +4,6 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "nodemon main.js",
     "sass": "node-sass sass/main.scss -o public/stylesheets"
   },
   "keywords": [],
@@ -24,5 +23,8 @@
     "node-sass-middleware": "^0.11.0",
     "nodemailer": "^6.4.17",
     "nodemon": "^2.0.7"
+  },
+  "engines": {
+    "node": "v14.15.5"
   }
 }
